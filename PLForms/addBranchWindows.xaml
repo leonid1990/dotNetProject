@@ -1,0 +1,80 @@
+﻿<Window x:Class="PLForms.addBranchWindows"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="" Height="300" Width="300">
+
+
+    <Grid>
+        <Grid x:Name="branchGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                
+
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="title"  FontSize="30" HorizontalAlignment="Center" Grid.ColumnSpan="2" />
+            <TextBlock Style="{StaticResource myTableTextStyle}"  Text="שם הסניף" Grid.Row="1" Grid.Column="1"  />
+            <TextBlock Style="{StaticResource myTableTextStyle}" Text="כתובת הסניף" Grid.Row="2" Grid.Column="1" />
+            <TextBlock Style="{StaticResource myTableTextStyle}" Text="מס' טלפון" Grid.Row="3" Grid.Column="1" />
+            <TextBlock Style="{StaticResource myTableTextStyle}" Text="שם האחראי" Grid.Row="4" Grid.Column="1" />
+            <TextBlock Style="{StaticResource myTableTextStyle}"  Text="מס' העובדים" Grid.Row="5" Grid.Column="1" />
+            <TextBlock Style="{StaticResource myTableTextStyle}" Text="שליחים פנויים" Grid.Row="6" Grid.Column="1" />
+
+            <TextBox Text="{Binding nameOfBranch , Mode=TwoWay}"  x:Name="name"   Grid.Row="1" Grid.Column="0" />
+            <TextBox Text="{Binding adressOfBranch , Mode=TwoWay}" TextAlignment="Right" x:Name="adress"  Grid.Row="2" Grid.Column="0"   />
+            <TextBox Text="{Binding phoneNumberOfBranch , Mode=TwoWay}" TextAlignment="Right" x:Name="phone"  Grid.Row="3" Grid.Column="0" PreviewTextInput="NumberValidationTextBox" />
+            <TextBox Text="{Binding nameOfResponsible , Mode=TwoWay}" TextAlignment="Right" x:Name="responsible"  Grid.Row="4" Grid.Column="0" />
+            <TextBox Text="{Binding numberOfWorkers  , Mode=TwoWay}"  TextAlignment="Right" x:Name="workers"   Grid.Row="5" Grid.Column="0" PreviewTextInput="NumberValidationTextBox" />
+            <TextBox Text="{Binding numberOfFreeCouriers , Mode=TwoWay}" TextAlignment="Right" x:Name="free_couriers"  Grid.Row="6" Grid.Column="0" PreviewTextInput="NumberValidationTextBox" />
+            <Button Background="{StaticResource myLinearGradientBrush}" x:Name="buttonForm"   Grid.Row="8"  Grid.ColumnSpan="2" Click="addBranchEvent" >
+
+            <Button.Style>
+                <Style>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=name, Path=Text}" Value="">
+                            <Setter Property="Button.IsEnabled" Value="false"/>
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding ElementName=adress , Path=Text}" Value="0">
+                            <Setter Property="Button.IsEnabled" Value="false"/>
+                        </DataTrigger>
+
+                            <DataTrigger Binding="{Binding ElementName=phone , Path=Text}" Value="0">
+                            <Setter Property="Button.IsEnabled" Value="false"/>
+
+                        </DataTrigger>
+
+                            <DataTrigger Binding="{Binding ElementName=responsible , Path=Text}" Value="0">
+                            <Setter Property="Button.IsEnabled" Value="false"/>
+                        </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=workers , Path=Text}" Value="0">
+                            <Setter Property="Button.IsEnabled" Value="false"/>
+                        </DataTrigger>
+
+                            <DataTrigger Binding="{Binding ElementName=free_couriers , Path=Text}" Value="0">
+                                <Setter Property="Button.IsEnabled" Value="false"/>
+                            </DataTrigger>
+                            
+                        </Style.Triggers>
+                </Style>
+            </Button.Style>
+            </Button>
+
+
+
+
+
+        </Grid>
+
+    </Grid>
+</Window>

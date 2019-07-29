@@ -1,0 +1,101 @@
+﻿<Window x:Class="PLForms.moreDetails"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="פרטים נוספים"   Height="300" Width="450">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <Grid x:Name="showProfitByGrid" Grid.Row="1" FlowDirection="RightToLeft" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.5*" />
+                <RowDefinition Height="7*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="2.7*"/>
+            </Grid.ColumnDefinitions>
+
+
+
+            <TextBlock Style="{StaticResource myTitleStyle}" Text="בחר באחד האופציות על מנת להציג נתונים" Grid.Column="0" />
+            <ComboBox Style="{StaticResource comboboxStyle}" x:Name="showProfitBy"  SelectionChanged="comboBox_SelectionChanged"  Grid.Column="1" >
+                <ComboBoxItem Content="הצג רווחים לפי כתובות"  />
+                <ComboBoxItem Content="הצג רווחים לפי תאריכים"  />
+                <ComboBoxItem Content="הצג רווחים לפי סוגי מנות"  />
+                <ComboBoxItem Content="הצג הזמנות היקרות מ50ש'ח"  />
+
+
+            </ComboBox>
+               
+            <DataGrid Visibility="Hidden"  Grid.Row="1" FlowDirection="RightToLeft" x:Name="profitDataGrid"  IsReadOnly="True" AutoGenerateColumns="False" Grid.ColumnSpan="2"  >
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="orderby" Header="a" Binding="{Binding text }"  />
+                    <DataGridTextColumn x:Name="resualt" Header="b" Binding="{Binding profit }" />
+               </DataGrid.Columns>
+
+
+
+
+            </DataGrid>
+
+
+        </Grid>
+
+
+        <Grid x:Name="summery" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock x:Name="title" Style="{StaticResource myTitleStyle}" Text="נתונים כללים על המערכת"  HorizontalAlignment="Center" Grid.ColumnSpan="2" />
+
+            <TextBlock Style="{StaticResource myTableTextStyle}"  Text="שם המנה הפופולארית ביותר" Grid.Row="1" Grid.Column="1"  />
+            <TextBlock Style="{StaticResource myTableTextStyle}" Text="שם הלקוח הפופולארי ביותר" Grid.Row="2" Grid.Column="1" />
+            <TextBlock Style="{StaticResource myTableTextStyle}" Text="שם הסניף הפופולארי ביותר" Grid.Row="3" Grid.Column="1" />
+            <TextBlock Style="{StaticResource myTableTextStyle}" Text="סך הכל הכנסות" Grid.Row="4" Grid.Column="1" />
+            <TextBlock Style="{StaticResource myTableTextStyle}" Text="סך הכל מנות" Grid.Row="5" Grid.Column="1" />
+            <TextBlock Style="{StaticResource myTableTextStyle}"  Text="סך הכל סניפים" Grid.Row="6" Grid.Column="1" />
+            <TextBlock Style="{StaticResource myTableTextStyle}" Text="סך הכל לקוחות " Grid.Row="7" Grid.Column="1" />
+            <TextBlock Style="{StaticResource myTableTextStyle}" Text="המנה היקרה ביותר " Grid.Row="8" Grid.Column="1" />
+
+            <TextBlock  x:Name="mostPopularDish"  TextAlignment="Right"   Grid.Row="1" Grid.Column="0"   />
+            <TextBlock  x:Name="mostPopularClient" TextAlignment="Right"   Grid.Row="2" Grid.Column="0"  />
+            <TextBlock  x:Name="mostPopularBranch" TextAlignment="Right"   Grid.Row="3" Grid.Column="0"  />
+
+            <TextBlock  x:Name="sumProfit"  TextAlignment="Right"   Grid.Row="4" Grid.Column="0" />
+            <TextBlock x:Name="numberOfDishes"  TextAlignment="Right"    Grid.Row="5" Grid.Column="0"  />
+            <TextBlock  x:Name="numberOfBranches"  TextAlignment="Right"  Grid.Row="6" Grid.Column="0" />
+            <TextBlock x:Name="numberOfClients"  TextAlignment="Right"  Grid.Row="7" Grid.Column="0"  />
+            <TextBlock x:Name="mostExpensiveDish"  TextAlignment="Right"  Grid.Row="8" Grid.Column="0"  />
+
+
+
+
+
+
+
+        </Grid>
+    </Grid>
+ 
+</Window>

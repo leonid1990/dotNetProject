@@ -1,0 +1,57 @@
+﻿<Window x:Class="PLForms.manageBranch"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+
+        Title="ניהול סניפים"   Height="400" Width="550">
+
+
+    <Grid>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.5*" />
+                <RowDefinition Height="8*" />
+            </Grid.RowDefinitions>
+            <TextBlock Style="{StaticResource myTitleStyle}"  Grid.Row="0" Text="רשימת ההסניפים(לחץ פעמים לעריכה)" />
+            <Button  Click="openAddBranchPage" Grid.Row="0" HorizontalAlignment="Left">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="Images/add.jpg" />
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <DataGrid Name="branchDataGrid" FlowDirection="RightToLeft"  IsReadOnly="True" AutoGenerateColumns="False"  Grid.Row="1" MouseDoubleClick="clickOnTableForUpdate">
+                <DataGrid.Columns>
+
+                    <DataGridTextColumn Header="ID" Binding="{Binding  branchId}"  />
+                    <DataGridTextColumn Header="שם הסניף" Binding="{Binding nameOfBranch}" />
+                    <DataGridTextColumn Header="כתובת הסניף" Binding="{Binding adressOfBranch}" />
+                    <DataGridTextColumn Header="מס' טלפון" Binding="{Binding phoneNumberOfBranch}" />
+                    <DataGridTextColumn Header="שם האחראי" Binding="{Binding  nameOfResponsible}"  />
+                    <DataGridTextColumn Header="מס' העובדים" Binding="{Binding numberOfWorkers}" />
+                    <DataGridTextColumn Header="מס' השליחים הפנויים" Binding="{Binding  numberOfFreeCouriers}"  />
+                    <!--<DataGridTextColumn Header="רמת הכשרות" Binding="{Binding  branchLevelOfKosher}"  />-->
+
+
+                </DataGrid.Columns>
+                <DataGrid.ContextMenu>
+                    <ContextMenu >
+                        <MenuItem Header="delete" Click="deleteBranch_Click"  />
+
+
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+            </DataGrid>
+
+
+
+
+
+
+
+
+           
+        </Grid>
+
+    </Grid>
+</Window>

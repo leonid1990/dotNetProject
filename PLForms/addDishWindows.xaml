@@ -1,0 +1,60 @@
+﻿<Window x:Class="PLForms.addDishWindows"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="addDishWindows" Height="300" Width="300">
+
+
+    <Grid>
+        <Grid x:Name="orderGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+
+            </Grid.RowDefinitions>
+            <TextBlock  x:Name="title" FontSize="30" Text="הוספת מנה" HorizontalAlignment="Center" Grid.ColumnSpan="2" />
+            <TextBlock Style="{StaticResource myTableTextStyle}" Text="שם המנה" Grid.Row="1" Grid.Column="1"  />
+            <TextBlock Style="{StaticResource myTableTextStyle}" Text="גודל המנה" Grid.Row="2" Grid.Column="1" />
+            <TextBlock Style="{StaticResource myTableTextStyle}" Text="מחיר המנה" Grid.Row="3" Grid.Column="1" />
+            <TextBlock Style="{StaticResource myTableTextStyle}" Text="כשרות" Grid.Row="4" Grid.Column="1" />
+
+            <TextBox Style="{StaticResource textBoxStyle}" x:Name="name"  Text="{Binding dishName, Mode=TwoWay}" Grid.Row="1" Grid.Column="0" />
+            <ComboBox Style="{StaticResource comboboxStyle}" SelectedItem="{Binding dishSize, Mode=TwoWay}"  x:Name="dishSize" Grid.Column="0"  Grid.Row="2"  Margin="3" />
+            <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding priceOfSingleDish, Mode=TwoWay}" TextAlignment="Right" x:Name="price"  Grid.Row="3" Grid.Column="0"  PreviewTextInput="NumberValidationTextBox" />
+            <ComboBox Style="{StaticResource comboboxStyle }"  SelectedItem="{Binding dishLevelOfKosher , Mode=TwoWay}" x:Name="dishKosherLevel" Grid.Column="0"  Grid.Row="4"  Margin="3,0,3,6" />
+            <Button x:Name="buttonSend" Background="{StaticResource myLinearGradientBrush}" Content="הוסף מנה"  Grid.Row="5"  Grid.ColumnSpan="2" Click="addDishEvent" >
+              
+                <Button.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=name, Path=Text}" Value="">
+                                <Setter Property="Button.IsEnabled" Value="false"/>
+                            </DataTrigger>
+
+                            <DataTrigger Binding="{Binding ElementName=price , Path=Text}" Value="0">
+                                <Setter Property="Button.IsEnabled" Value="false"/>
+                                
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+
+
+
+
+
+
+
+        </Grid>
+
+    </Grid>
+</Window>

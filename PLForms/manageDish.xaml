@@ -1,0 +1,52 @@
+﻿<Window x:Class="PLForms.manageDish"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+
+        Title="ניהול מנות"    Height="400" Width="400">
+
+    
+    <Grid>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.5*" />
+                <RowDefinition Height="8*" />
+            </Grid.RowDefinitions>
+            <TextBlock Style="{StaticResource myTitleStyle}"  Grid.Row="0" Text="רשימת המנות(לחץ פעמים לעריכה)" />
+            <Button  Click="openAddDishPage" Grid.Row="0" HorizontalAlignment="Left">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="Images/add.jpg" />
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <DataGrid  Grid.Row="1" FlowDirection="RightToLeft" Name="dishDataGrid"  IsReadOnly="True" AutoGenerateColumns="False"   MouseDoubleClick="DishUpdate_Click">
+                <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding  dishID}"  />
+                <DataGridTextColumn Header="שם המנה" Binding="{Binding dishName}" />
+              
+                <DataGridTextColumn Header="גודל המנה" Binding="{Binding dishSize}" />
+                <DataGridTextColumn Header="מחיר מנה בודדת" Binding="{Binding priceOfSingleDish}" />
+                <DataGridTextColumn Header="רמת כשרות" Binding="{Binding dishLevelOfKosher}" />
+                    
+                </DataGrid.Columns>
+                <DataGrid.ContextMenu>
+                    <ContextMenu >
+                        <MenuItem Header="delete" Click="DishDelete_Click"  />
+
+
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+           
+        </DataGrid>
+
+            
+            
+            
+            
+     
+        </Grid>
+
+            </Grid>
+</Window>

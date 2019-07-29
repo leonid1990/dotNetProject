@@ -1,0 +1,72 @@
+﻿<Window x:Class="PLForms.addClientWindows"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="addClientWindows" Height="300" Width="300">
+
+
+    <Grid>
+        <Grid x:Name="clientGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="title" FontSize="30"  HorizontalAlignment="Center" Grid.ColumnSpan="2" />
+            <TextBlock Style="{StaticResource myTableTextStyle}"  Text="שם לקוח" Grid.Row="1" Grid.Column="1"  />
+            <TextBlock Style="{StaticResource myTableTextStyle}" Text="כתובת לקוח" Grid.Row="2" Grid.Column="1" />
+            <TextBlock Style="{StaticResource myTableTextStyle}" Text="מיקום לקוח" Grid.Row="3" Grid.Column="1" />
+            <TextBlock Style="{StaticResource myTableTextStyle}" Text="מס' אשראי" Grid.Row="4" Grid.Column="1" />
+            <TextBlock Style="{StaticResource myTableTextStyle}" Text="גיל" Grid.Row="5" Grid.Column="1" />
+
+            <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding nameOfClient , Mode=TwoWay}"  TextAlignment="Right" x:Name="name"  Grid.Row="1" Grid.Column="0" />
+            <TextBox Style="{StaticResource textBoxStyle}" Text="{Binding addressOfClient, Mode=TwoWay}" TextAlignment="Right" x:Name="adress"  Grid.Row="2" Grid.Column="0"   />
+            <TextBox Style="{StaticResource textBoxStyle}"   Text="{Binding  LocationOfClient, Mode=TwoWay}" TextAlignment="Right" x:Name="location"   Grid.Row="3" Grid.Column="0" />
+            <TextBox Style="{StaticResource textBoxStyle}"  Text="{Binding numberOfCreditCard , Mode=TwoWay}"  TextAlignment="Right" x:Name="creditCard"  Grid.Row="4" Grid.Column="0" PreviewTextInput="NumberValidationTextBox" />
+            <TextBox Style="{StaticResource textBoxStyle}"   Text="{Binding age , Mode=TwoWay}"  TextAlignment="Right" x:Name="age"   Grid.Row="5" Grid.Column="0" PreviewTextInput="NumberValidationTextBox"  />
+            <Button x:Name="buttonText" Background="{StaticResource myLinearGradientBrush}"  Grid.Row="6"  Grid.ColumnSpan="2" Click="addClientEvent">
+               
+                <Button.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=name, Path=Text}" Value="">
+                                <Setter Property="Button.IsEnabled" Value="false"/>
+                            </DataTrigger>
+
+                            <DataTrigger Binding="{Binding ElementName=adress , Path=Text}" Value="0">
+                                <Setter Property="Button.IsEnabled" Value="false"/>
+                            </DataTrigger>
+                            
+                            <DataTrigger Binding="{Binding ElementName=location , Path=Text}" Value="0">
+                                    <Setter Property="Button.IsEnabled" Value="false"/>
+
+                            </DataTrigger>
+                                
+                            <DataTrigger Binding="{Binding ElementName=creditCard , Path=Text}" Value="0">
+                                        <Setter Property="Button.IsEnabled" Value="false"/>
+                             </DataTrigger>
+                                    <DataTrigger Binding="{Binding ElementName=age , Path=Text}" Value="0">
+                                <Setter Property="Button.IsEnabled" Value="false"/>
+                            </DataTrigger>
+                            
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+
+
+
+
+        </Grid>
+
+    </Grid>
+</Window>

@@ -1,0 +1,112 @@
+﻿<Window x:Class="PLForms.addOrderWindows"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:System="clr-namespace:System;assembly=mscorlib" 
+        xmlns:local="clr-namespace:PLForms"
+        Title="addOrderWindows" Height="300" Width="450">
+
+    <Window.Resources>
+        <local:ConvertIDtoNameOfDish
+        x:Key="convertIDtoNameOfDish" />
+
+    </Window.Resources>
+
+    <Grid><!--the local grid-->
+
+        <!--grid for add table-->
+        <Grid> 
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="1.3*"/>
+                <RowDefinition Height="1.3*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+
+            </Grid.RowDefinitions>
+
+            <TextBlock Style="{StaticResource myTitleStyle}" x:Name="titleOfPage" Text="הוספת הזמנה"  FontSize="15" HorizontalAlignment="Center" Grid.Row="0" Grid.ColumnSpan="2" />
+            <TextBlock Style="{StaticResource myTableTextStyle}" Text="לקוח" Grid.Row="1" Grid.Column="1" />
+            <TextBlock Style="{StaticResource myTableTextStyle}" Text="מסעדה" Grid.Row="2" Grid.Column="1"  />
+            <TextBlock Style="{StaticResource myTableTextStyle}" Text="מנות" Grid.Row="3" Grid.Column="1" />
+            <TextBlock Style="{StaticResource myTableTextStyle}" Text="מחיר כולל" Grid.Row="4" Grid.Column="1" />
+
+            <!--list of client-->
+             <ComboBox Style="{StaticResource comboboxStyle}" x:Name="listOfClientCombobox" Grid.Column="0"  Grid.Row="1"     />
+            <!--list of branch-->
+            <ComboBox Style="{StaticResource comboboxStyle}" x:Name="listOfBranchCombobox"   Grid.Row="2" Grid.Column="0" />
+
+            <!--dish add grid-->
+            <Grid  Grid.Row="3" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3.5*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!--amount if same dish-->
+                <local:NumericUpDownControl x:Name="numberSameDishNumUpDown" Grid.Column="0" />
+                <!--רשימת המנות-->
+                <ComboBox ToolTip="hidden" ToolTipOpening="dishToolTip" Style="{StaticResource comboboxStyle}" x:Name="listDishCombobox" Grid.Column="3"  />
+                <!--רשימת הכשרויות-->
+                <ComboBox ToolTip="hidden" ToolTipOpening="kosherToolTip" Style="{StaticResource comboboxStyle}" x:Name="listKosherCombobox"  Grid.Column="2"   />
+                <!--רשימת הגדלים-->
+                <ComboBox  ToolTip="hidden" ToolTipOpening="sizeToolTip" Style="{StaticResource comboboxStyle}"  x:Name="listSizeCombobox"  Grid.Column="1"  />
+                
+                
+                <!--כפתור הוספה-->
+                    <Button  Click="addDishToOrderClick" Grid.Column="4">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Image Source="Images/add.jpg" />
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                
+            </Grid> <!-- end dish add grid-->
+
+            <!--table to show the dishes that added-->
+            <DataGrid Name="addedDishes" FlowDirection="RightToLeft"  IsReadOnly="True" AutoGenerateColumns="False"  Grid.Row="5"    >
+                    <DataGrid.Columns>
+
+                    <DataGridTextColumn Header="שם מנה"  Binding="{Binding dishID , Converter={StaticResource convertIDtoNameOfDish}}" />
+                    <DataGridTextColumn Header="כשרות"  Binding="{Binding dishLevelOfKosher}"  />
+                    <DataGridTextColumn Header="גודל"  Binding="{Binding dishSize  }"  />
+                    <DataGridTextColumn Header="כמות"  Binding="{Binding numberOfSameDish}"  />
+                    <DataGridTextColumn Header="הערות"  />
+                </DataGrid.Columns>
+
+                <!--כפתור מחיקת מנות מוזמנות-->
+                    <DataGrid.ContextMenu>
+                        <ContextMenu >
+                            <MenuItem Header="delete" Click="orderDishDelete_Click"  />
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
+            </DataGrid>
+
+            <TextBlock TextAlignment="Right" x:Name="totalPrice"  Grid.Row="4" Grid.Column="0" Height="22" VerticalAlignment="Top"  /> <!--מחיר כולל-->
+            <Button x:Name="sendFormBottun" Background="{StaticResource myLinearGradientBrush}" Content="הוסף הזמנה"  Click="addOrderEvent" IsEnabled="{Binding ElementName=ifAgree, Path=IsChecked}" Grid.Row="7"  Grid.ColumnSpan="2"  />
+            <CheckBox x:Name="ifAgree" Content="האם אתה מסכים לתנאי המשלוח??" Grid.Row="6" FlowDirection="RightToLeft"/>
+
+
+
+
+
+
+         <!--end grid for add table-->
+        </Grid>
+
+   
+        
+        
+        
+    </Grid>
+</Window>

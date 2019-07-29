@@ -1,0 +1,22 @@
+﻿<Window x:Class="PLForms.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="המסעדה של אריה ונריה" FlowDirection="RightToLeft" Height="350" Width="525">
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+
+            </Grid.RowDefinitions>
+            <Button   x:Name="manageDish" Grid.Row="0" Margin="10" Content="ניהול מנות" Click="manageDish_click" />
+            <Button x:Name="manageBranch" Grid.Row="1" Margin="10" Content="ניהול סניפים" Click="manageBranch_click" />
+            <Button  x:Name="manageClient" Grid.Row="2" Margin="10" Content="ניהול לקוחות"  Click="manageClient_click"  />
+            <Button  x:Name="manageOrder" Grid.Row="3" Margin="10" Content="ניהול הזמנות" Click="manageOrder_click" />
+            <Button  x:Name="moreDitails" Grid.Row="4" Margin="10" Content="פרטים נוספים" Click="moreDitails_Click"/>
+        </Grid>
+    </Grid>
+</Window>

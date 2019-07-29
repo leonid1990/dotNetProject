@@ -1,0 +1,56 @@
+﻿<Window x:Class="PLForms.manageClient"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="manageClient" Height="400" Width="400">
+
+
+    <Grid>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.5*" />
+                <RowDefinition Height="8*" />
+            </Grid.RowDefinitions>
+            <TextBlock Style="{StaticResource myTitleStyle}" FlowDirection="RightToLeft" Grid.Row="0" Text="רשימת הלקוחות(לחץ פעמים לעריכה)" />
+            <Button  Click="openAddClientPage" Grid.Row="0" HorizontalAlignment="Left">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="Images/add.jpg" />
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <DataGrid Name="clientDataGrid"  FlowDirection="RightToLeft" IsReadOnly="True" AutoGenerateColumns="False"  Grid.Row="1" MouseDoubleClick="clickOnTableForUpdate">
+                <DataGrid.Columns>
+
+
+
+                    <DataGridTextColumn Header="ID" Binding="{Binding  idOfClient}"  />
+                    <DataGridTextColumn Header="שם הלקוח" Binding="{Binding nameOfClient}" />
+                    <DataGridTextColumn Header="כתובת הלקוח" Binding="{Binding addressOfClient}" />
+                    <DataGridTextColumn Header="מיקום הלקוח" Binding="{Binding LocationOfClient}" />
+                    <DataGridTextColumn Header="מספר אשראי" Binding="{Binding numberOfCreditCard}" />
+                    <DataGridTextColumn Header="גיל" Binding="{Binding age}" />
+
+
+                </DataGrid.Columns>
+                <DataGrid.ContextMenu>
+                    <ContextMenu >
+                        <MenuItem Header="delete" Click="deleteClient_Click"  />
+
+
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+            </DataGrid>
+
+
+
+
+
+
+
+
+        
+        </Grid>
+
+    </Grid>
+</Window>
